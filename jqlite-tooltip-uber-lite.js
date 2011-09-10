@@ -29,13 +29,16 @@
 				if (e.type == 'mousemove')
 				{
 					var tipWidth = $('jQLiteTip').outerWidth(true);
-					var tipHeight = $('jQLiteTip').outerHeight(true);					
+					var tipHeight = $('jQLiteTip').outerHeight(true);
+										
 					if (tipTop + tipWidth > $(window).scrollLeft() + $(window).width()){
 						tipLeft=e.pageX-tipWidth;
 					}
+					
 					if ($(window).height() + $(window).scrollTop() < tipTop + tipHeight){
 						tipTop = e.pageY - tipHeight;
-					}					
+					}	
+									
 					$('#jQLiteTip').text(txt).css('top',tipTop).css('left',tipLeft).fadeIn(250);
 				}
 			}
