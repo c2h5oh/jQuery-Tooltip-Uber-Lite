@@ -1,0 +1,9 @@
+This is an attempt to make the lowest footprint possible tooltip plugin.
+
+1. The plan:
+- just bare essentials
+- live() support
+- no ajax support - load tooltip content from alt or title
+- fancy looking, but no images
+- as lightweight as possible
+- cross browser compatible 
