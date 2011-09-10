@@ -1,10 +1,14 @@
 This is an attempt to make the lowest footprint possible tooltip plugin.
 
-1. The plan:
-- just bare essentials
-- live() support
-- no ajax support - load tooltip content from alt or title
-- fancy looking, but no images
-- as lightweight as possible
-- cross browser compatible 
-- as lightweigh as possible
+Features:
+- uses element title as tooltip content
+- supports dynamic content (uses live() )
+- clean and lightweight 
+- cross browser compatible (IE6+, FF2+, Opera9.5+, Chrome 3+)
+- tooltip gets automatically repositioned if it would be displayed outside browser window
+- tooltip width is restricted to 50% window size
+- it's tiny - when minified less than 1kb, gzipped around 500 bytes
+
+Usage example:
+
+$.fn.jQLiteTip('.tooltip');

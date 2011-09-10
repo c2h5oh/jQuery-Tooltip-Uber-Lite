@@ -1,6 +1,6 @@
 /**
  * jQLiteTip - Lightweight jQuery tooltip plugin
- * @version: 0.1 (2011/09/10)  
+ * @version: 1.0 (2011/09/10)  
  * @author Maciej Lisiewski 
  * Dual licensed under the MIT and GPL licenses:
  *   http://www.opensource.org/licenses/mit-license.php
@@ -9,37 +9,44 @@
 
 (function($) {		
 	$.fn.jQLiteTip = $.fn.jqlitetip = function(selector){
-		$("body").append('<div id="jQLiteTip" style="position:absolute;z-index:6000;display:none;"></div>');
-		$(selector).live('hover',function(e){
-			var txt = $(this).attr('title');
-			var tipLeft = e.pageX + 15;
-			var tipTop = e.pageY + 15;
-			if (txt !== undefined)
+		var txt;		
+		$(selector).live('mouseenter mouseleave mousemove',function(e){			
+			var tmp =  $(this).attr('title');						
+			var tipLeft = e.pageX + 14;
+			var tipTop = e.pageY + 14;
+			if (tmp !== undefined)
 			{
 				if (e.type == 'mouseenter')
 				{
+					$("body").append('<div id="jQLiteTip" style="position:absolute;z-index:6000;display:none;"></div>');
+					txt = $(this).attr('title');
 					$(this).attr('title','');
-					$('#jQLiteTip').text(txt).css('top',tipTop).css('left',tipLeft).fadeIn(250);
+					$('#jQLiteTip').text(txt).css('top',tipTop).css('left',tipLeft).fadeIn(250);					
 				}
 				if (e.type == 'mouseleave')
 				{
-					$('#jQLiteTip').fadeOut(100);
+					$('#jQLiteTip').fadeOut(100).remove();					
 					$(this).attr('title',txt);
 				}
 				if (e.type == 'mousemove')
 				{
-					var tipWidth = $('jQLiteTip').outerWidth(true);
-					var tipHeight = $('jQLiteTip').outerHeight(true);
+					var tipWidth = $('#jQLiteTip').outerWidth(true);
+					var tipHeight = $('#jQLiteTip').outerHeight(true);
+					
+					if (tipWidth > 0.5 * $(window).width())
+					{
+						$('#jQLiteTip').width(0.5 * $(window).width());
+					}
 										
-					if (tipTop + tipWidth > $(window).scrollLeft() + $(window).width()){
+					if (tipLeft + tipWidth > $(window).scrollLeft() + $(window).width()){
 						tipLeft=e.pageX-tipWidth;
 					}
 					
 					if ($(window).height() + $(window).scrollTop() < tipTop + tipHeight){
 						tipTop = e.pageY - tipHeight;
-					}	
+					}				
 									
-					$('#jQLiteTip').text(txt).css('top',tipTop).css('left',tipLeft).fadeIn(250);
+					$('#jQLiteTip').css('top',tipTop).css('left',tipLeft).fadeIn(250);
 				}
 			}
 		});      	
