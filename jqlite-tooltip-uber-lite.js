@@ -9,8 +9,8 @@
 
 (function($) {		
 	$.fn.jQLiteTip = $.fn.jqlitetip = function(selector){
-		var txt;		
-		$(selector).live('mouseenter mouseleave mousemove',function(e){			
+		var txt;
+		$(document).on('mouseenter mouseleave mousemove', selector, function(e){			
 			var tmp =  $(this).attr('title');						
 			var tipLeft = e.pageX + 14;
 			var tipTop = e.pageY + 14;
@@ -19,14 +19,14 @@
 				if (e.type == 'mouseenter')
 				{
 					$("body").append('<div id="jQLiteTip" style="position:absolute;z-index:6000;display:none;"></div>');
-					txt = $(this).attr('title');
-					$(this).attr('title','');
+					txt = $(this).prop('title');
+					$(this).prop('title','');
 					$('#jQLiteTip').text(txt).css('top',tipTop).css('left',tipLeft).fadeIn(250);					
 				}
 				if (e.type == 'mouseleave')
 				{
 					$('#jQLiteTip').fadeOut(100).remove();					
-					$(this).attr('title',txt);
+					$(this).prop('title',txt);
 				}
 				if (e.type == 'mousemove')
 				{

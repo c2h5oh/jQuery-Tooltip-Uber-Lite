@@ -12,3 +12,7 @@ Features:
 Usage example:
 
 $.fn.jQLiteTip('.tooltip');
+
+Changelog:
+-1.0    initial release
+-1.0.1  jQuery 1.9 compatibility fixex, no longer compatible with jQuery < 1.6
